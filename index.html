@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover">
+<title>Дарья Шугарья — лазерная эпиляция и шугаринг на Таганской</title>
+<meta name="description" content="Лазерная эпиляция, шугаринг и воск в студии «Дарья Шугарья». Актуальные спецпредложения. Онлайн-запись.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@500;600;700&family=Manrope:wght@400;500;700;800&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- ================= HERO ================= -->
+<header class="hero">
+  <div class="hero-blob"></div>
+  <div class="hero-blob-2"></div>
+  <div class="wrap hero-inner">
+    <div class="studio-name">Студия «Дарья Шугарья»</div>
+    <h1>Лазерная эпиляция, шугаринг и воск на Таганской</h1>
+    <p>Гладкая кожа без спешки и очередей — подберём метод именно для вас.</p>
+    <a class="btn btn-primary" id="hero-book" href="#" target="_blank" rel="noopener">Записаться онлайн</a>
+  </div>
+</header>
+
+<!-- ================= СПЕЦПРЕДЛОЖЕНИЯ ================= -->
+<section class="offers">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">Актуально сейчас</span>
+      <h2>Спецпредложения</h2>
+    </div>
+    <div id="offers-list"><!-- рендерится из data.js --></div>
+  </div>
+</section>
+
+<!-- ================= ПОЧЕМУ МЫ ================= -->
+<section class="advantages">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">Почему выбирают нас</span>
+      <h2>«Дарья Шугарья»</h2>
+    </div>
+    <div class="advantages-list" id="advantages-list"><!-- рендерится из data.js --></div>
+  </div>
+</section>
+
+<!-- ================= ДОВЕРИЕ ================= -->
+<section class="trust">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">Отзывы</span>
+      <h2>Нам доверяют</h2>
+    </div>
+    <div id="trust-block"><!-- рендерится из data.js --></div>
+  </div>
+</section>
+
+<!-- ================= КОНТАКТЫ ================= -->
+<section class="contacts">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">Мы ждём вас</span>
+      <h2>Контакты</h2>
+    </div>
+
+    <div class="contact-row">
+      <span class="contact-label">Адрес</span>
+      <span class="contact-value" id="c-address"></span>
+    </div>
+    <div class="contact-row">
+      <span class="contact-label">Метро</span>
+      <span class="contact-value" id="c-metro"></span>
+    </div>
+    <div class="contact-row">
+      <span class="contact-label">Телефон</span>
+      <span class="contact-value" id="c-phone"></span>
+    </div>
+    <div class="contact-row">
+      <span class="contact-label">Режим работы</span>
+      <span class="contact-value" id="c-hours"></span>
+    </div>
+
+    <div class="contact-links">
+      <a class="icon-link" id="link-tg" href="#" target="_blank" rel="noopener">Telegram</a>
+      <a class="icon-link" id="link-wa" href="#" target="_blank" rel="noopener">WhatsApp</a>
+      <a class="icon-link" id="link-max" href="#" target="_blank" rel="noopener">Max</a>
+    </div>
+
+    <div class="contact-actions">
+      <a class="btn btn-secondary" id="c-route" href="#" target="_blank" rel="noopener">Построить маршрут</a>
+      <a class="btn btn-secondary" id="c-call" href="#">Позвонить</a>
+      <a class="btn btn-primary" id="c-book" href="#" target="_blank" rel="noopener">Записаться онлайн</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  © <span id="year"></span> Дарья Шугарья
+</footer>
+
+<!-- ================= НИЖНЯЯ ПАНЕЛЬ ================= -->
+<nav class="sticky-nav">
+  <a class="nav-book" id="nav-book" href="#" target="_blank" rel="noopener">Записаться</a>
+  <a class="nav-call" id="nav-call" href="#">Позвонить</a>
+</nav>
+
+<script src="data.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
