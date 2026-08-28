@@ -3,109 +3,136 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover">
-<title>Дарья Шугарья — лазерная эпиляция и шугаринг на Таганской</title>
-<meta name="description" content="Лазерная эпиляция, шугаринг и воск в студии «Дарья Шугарья». Актуальные спецпредложения. Онлайн-запись.">
+<title>Дарья Шугарья × партнёр — особые условия по рекомендации</title>
+<meta name="description" content="Персональная коллаборация «Дарья Шугарья» с вашим мастером: особые условия на первое посещение и бонус на услуги у партнёра.">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@500;600;700&family=Manrope:wght@400;500;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
 
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<!-- ================= HERO ================= -->
+<!-- ================= 01. HERO ================= -->
 <header class="hero">
-  <div class="hero-blob"></div>
-  <div class="hero-blob-2"></div>
-  <div class="wrap hero-inner">
-    <div class="studio-name">Студия «Дарья Шугарья»</div>
-    <h1>Лазерная эпиляция, шугаринг и воск на Таганской</h1>
-    <p>Гладкая кожа без спешки и очередей — подберём метод именно для вас.</p>
-    <a class="btn btn-primary" id="hero-book" href="#" target="_blank" rel="noopener">Записаться онлайн</a>
+  <div class="wrap">
+    <div class="collab-mark">
+      <span class="studio-name">ДАРЬЯ ШУГАРЬЯ</span>
+      <span class="collab-x">×</span>
+      <span class="partner-name" id="partner-name-hero">партнёром</span>
+    </div>
+
+    <h1>Особые условия<br>по рекомендации вашего мастера</h1>
+
+    <p class="hero-subtitle" id="hero-subtitle">Для клиентов нашего партнёра — специальные условия на первое знакомство со студией «Дарья Шугарья» на Таганской.</p>
+
+    <p class="bonus-line" id="bonus-line">После визита — 500 ₽ бонусами на услуги у партнёра.</p>
+
+    <a class="btn-primary" id="hero-cta" href="#offers" data-offer="general" data-location="hero">Выбрать процедуру</a>
+  </div>
+
+  <div class="hero-photo">
+    <div class="hero-photo-placeholder" id="hero-photo">
+      <!-- TODO: заменить на реальную фотографию студии / детали процедуры -->
+      <span>TODO: фото студии</span>
+    </div>
   </div>
 </header>
 
-<!-- ================= СПЕЦПРЕДЛОЖЕНИЯ ================= -->
-<section class="offers">
+<!-- ================= 02. ВАШИ УСЛОВИЯ ================= -->
+<section class="section price-section" id="offers">
   <div class="wrap">
-    <div class="section-head">
-      <span class="eyebrow">Актуально сейчас</span>
-      <h2>Спецпредложения</h2>
-    </div>
-    <div id="offers-list"><!-- рендерится из data.js --></div>
+    <span class="eyebrow">Ваши условия</span>
+    <div id="price-list"><!-- рендерится из data.js --></div>
+    <p class="price-note" id="price-note"></p>
   </div>
 </section>
 
-<!-- ================= ПОЧЕМУ МЫ ================= -->
-<section class="advantages">
+<!-- ================= 03. БОНУС У ПАРТНЁРА ================= -->
+<section class="section bonus-section">
   <div class="wrap">
-    <div class="section-head">
-      <span class="eyebrow">Почему выбирают нас</span>
-      <h2>«Дарья Шугарья»</h2>
-    </div>
-    <div class="advantages-list" id="advantages-list"><!-- рендерится из data.js --></div>
+    <span class="eyebrow eyebrow-light">Ваш бонус</span>
+    <div class="bonus-amount" id="bonus-amount">500 ₽</div>
+    <h2 class="bonus-title" id="bonus-title">на следующий визит у партнёра</h2>
+    <p class="bonus-text" id="bonus-text"></p>
+    <div class="bonus-chain" id="bonus-chain"><!-- рендерится из data.js --></div>
   </div>
 </section>
 
-<!-- ================= ДОВЕРИЕ ================= -->
-<section class="trust">
+<!-- ================= 04. КАК ЭТО РАБОТАЕТ ================= -->
+<section class="section steps-section">
   <div class="wrap">
-    <div class="section-head">
-      <span class="eyebrow">Отзывы</span>
-      <h2>Нам доверяют</h2>
-    </div>
-    <div id="trust-block"><!-- рендерится из data.js --></div>
+    <span class="eyebrow">Как это работает</span>
+    <div id="steps-list"><!-- рендерится из data.js --></div>
   </div>
 </section>
 
-<!-- ================= КОНТАКТЫ ================= -->
-<section class="contacts">
+<!-- ================= 05. О СТУДИИ ================= -->
+<section class="section studio-section">
   <div class="wrap">
-    <div class="section-head">
-      <span class="eyebrow">Мы ждём вас</span>
-      <h2>Контакты</h2>
+    <span class="eyebrow">Камерная студия на Таганской</span>
+    <div class="studio-photo-placeholder">
+      <!-- TODO: заменить на реальную фотографию студии -->
+      <span>TODO: фото студии</span>
     </div>
+    <p class="studio-text" id="studio-text"></p>
+    <div class="studio-stats" id="studio-stats"><!-- рендерится из data.js --></div>
+  </div>
+</section>
 
-    <div class="contact-row">
-      <span class="contact-label">Адрес</span>
-      <span class="contact-value" id="c-address"></span>
-    </div>
-    <div class="contact-row">
-      <span class="contact-label">Метро</span>
-      <span class="contact-value" id="c-metro"></span>
-    </div>
-    <div class="contact-row">
-      <span class="contact-label">Телефон</span>
-      <span class="contact-value" id="c-phone"></span>
-    </div>
-    <div class="contact-row">
-      <span class="contact-label">Режим работы</span>
-      <span class="contact-value" id="c-hours"></span>
-    </div>
+<!-- ================= 06. ОТЗЫВЫ ================= -->
+<section class="section reviews-section">
+  <div class="wrap">
+    <span class="eyebrow">О нас говорят гости</span>
+    <div id="reviews-list"><!-- рендерится из data.js --></div>
+  </div>
+</section>
 
-    <div class="contact-links">
-      <a class="icon-link" id="link-tg" href="#" target="_blank" rel="noopener">Telegram</a>
-      <a class="icon-link" id="link-wa" href="#" target="_blank" rel="noopener">WhatsApp</a>
-      <a class="icon-link" id="link-max" href="#" target="_blank" rel="noopener">Max</a>
+<!-- ================= 07. ЛОКАЦИЯ ================= -->
+<section class="section location-section">
+  <div class="wrap">
+    <span class="eyebrow">Локация</span>
+    <div class="location-row">
+      <span class="location-label">Адрес</span>
+      <span class="location-value" id="loc-address"></span>
     </div>
+    <div class="location-row">
+      <span class="location-label">Метро</span>
+      <span class="location-value" id="loc-metro"></span>
+    </div>
+    <div class="location-row">
+      <span class="location-label">Режим работы</span>
+      <span class="location-value" id="loc-hours"></span>
+    </div>
+    <a class="text-link" id="loc-route" href="#" target="_blank" rel="noopener">Построить маршрут →</a>
+  </div>
+</section>
 
-    <div class="contact-actions">
-      <a class="btn btn-secondary" id="c-route" href="#" target="_blank" rel="noopener">Построить маршрут</a>
-      <a class="btn btn-secondary" id="c-call" href="#">Позвонить</a>
-      <a class="btn btn-primary" id="c-book" href="#" target="_blank" rel="noopener">Записаться онлайн</a>
+<!-- ================= 08. FINAL CTA ================= -->
+<section class="section final-section">
+  <div class="wrap">
+    <h2>Ваше предложение уже доступно</h2>
+    <p id="final-text">Выберите удобное время — специальные условия закреплены за клиентами партнёра.</p>
+    <a class="btn-primary btn-inverse" id="final-cta" href="#" target="_blank" rel="noopener" data-offer="general" data-location="final_cta">Выбрать время</a>
+    <p class="final-note" id="final-note">После визита начислим 500 ₽ бонусами у партнёра.</p>
+
+    <div class="final-contacts">
+      <a href="#" id="link-phone" class="text-link"></a>
+      <a href="#" id="link-tg" target="_blank" rel="noopener" class="text-link">Telegram</a>
+      <a href="#" id="link-wa" target="_blank" rel="noopener" class="text-link">WhatsApp</a>
+      <a href="#" id="link-max" target="_blank" rel="noopener" class="text-link">Max</a>
     </div>
   </div>
 </section>
 
 <footer>
-  © <span id="year"></span> Дарья Шугарья
+  <div class="wrap">© <span id="year"></span> Дарья Шугарья</div>
 </footer>
 
-<!-- ================= НИЖНЯЯ ПАНЕЛЬ ================= -->
-<nav class="sticky-nav">
-  <a class="nav-book" id="nav-book" href="#" target="_blank" rel="noopener">Записаться</a>
-  <a class="nav-call" id="nav-call" href="#">Позвонить</a>
+<!-- Sticky-кнопка на мобильном, появляется при скролле -->
+<nav class="sticky-nav" id="sticky-nav">
+  <a id="sticky-cta" href="#" target="_blank" rel="noopener" data-offer="general" data-location="sticky_nav">Записаться</a>
 </nav>
 
 <script src="data.js"></script>
