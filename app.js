@@ -1,6 +1,5 @@
 // ==========================================================
-// ДАРЬЯ ШУГАРЬЯ × ПАРТНЁР — editorial-лендинг
-// Рендер контента, определение партнёра, трекинг
+// ДАРЬЯ ШУГАРЬЯ × ПАРТНЁР — рендер контента, партнёр, трекинг
 // ==========================================================
 
 (function () {
@@ -15,7 +14,6 @@
     return { partnerId: clean(partnerId), partnerName: clean(partnerName) };
   }
 
-  // ---------- Сохраняем partner_id и UTM-метки на время сессии ----------
   function persistAttribution() {
     const params = new URLSearchParams(window.location.search);
     const { partnerId } = getPartnerInfo();
@@ -32,7 +30,6 @@
     try { return sessionStorage.getItem('partner_id') || ''; } catch (e) { return ''; }
   }
 
-  // ---------- Трекинг клика по кнопке записи ----------
   // TODO: подключить GTM/аналитику, чтобы события booking_click доходили до отчётов.
   function trackBookingClick(offerId, location) {
     const partnerId = getStoredPartnerId();
@@ -47,7 +44,6 @@
     console.log('[tracking] booking_click', eventData);
   }
 
-  // ---------- Добавляем метку источника к ссылке записи (best-effort) ----------
   function buildBookingUrl(baseUrl) {
     try {
       const url = new URL(baseUrl);
@@ -66,132 +62,94 @@
 
   document.addEventListener('DOMContentLoaded', () => {
     const d = SITE_DATA;
-    const { partnerId, partnerName } = getPartnerInfo();
+    const { partnerName } = getPartnerInfo();
     persistAttribution();
 
     const hasPartner = !!partnerName;
-    const displayName = hasPartner ? partnerName : 'нашего партнёра';
     const bookingUrl = buildBookingUrl(d.booking.yclientsUrl);
 
     // ---------- Партнёрские тексты (textContent — безопасно от XSS) ----------
-    document.getElementById('partner-name-hero').textContent = hasPartner ? partnerName : 'партнёром';
-    document.getElementById('hero-subtitle').textContent =
-      `Для клиентов ${displayName} — специальные условия на первое знакомство со студией «Дарья Шугарья» на Таганской.`;
-    document.getElementById('bonus-line').textContent = `После визита — ${d.bonus.amount} бонусами на услуги у ${hasPartner ? partnerName : 'партнёра'}.`;
-    document.getElementById('bonus-title').textContent = `на следующий визит у ${hasPartner ? partnerName : 'партнёра'}`;
-    document.getElementById('bonus-text').textContent = d.bonus.text;
-    document.getElementById('bonus-amount').textContent = d.bonus.amount;
-    document.getElementById('final-text').textContent = `Выберите удобное время — специальные условия закреплены за клиентами ${displayName}.`;
-    document.getElementById('final-note').textContent = `После визита начислим ${d.bonus.amount} бонусами у ${hasPartner ? partnerName : 'партнёра'}.`;
+    document.getElementById('partner-pill').textContent = hasPartner
+      ? `Для клиентов ${partnerName}`
+      : 'Специальное предложение';
 
-    // ---------- Цепочка бонуса ----------
-    const chainEl = document.getElementById('bonus-chain');
-    chainEl.innerHTML = '';
-    const chainParts = [hasPartner ? partnerName : 'Партнёр', 'Дарья Шугарья', `+${d.bonus.amount} у ${hasPartner ? partnerName : 'партнёра'}`];
-    chainParts.forEach((part, i) => {
-      const span = document.createElement('span');
-      span.textContent = part;
-      chainEl.appendChild(span);
-      if (i < chainParts.length - 1) {
-        const arrow = document.createElement('span');
-        arrow.className = 'chain-arrow';
-        arrow.textContent = '→';
-        chainEl.appendChild(arrow);
-      }
-    });
+    document.getElementById('hero-partner-name').textContent = hasPartner ? partnerName : 'нашего партнёра';
+
+    document.getElementById('exclusive-pill').textContent = hasPartner
+      ? `Эксклюзивно для клиентов ${partnerName}`
+      : 'Эксклюзивно для наших партнёров';
+
+    document.getElementById('offers-note').textContent =
+      `Предложение действует для новых гостей студии по рекомендации ${hasPartner ? partnerName : 'нашего партнёра'}. Подробности уточняйте у администратора.`;
 
     // ---------- Кнопки записи (общие CTA) ----------
     document.querySelectorAll('a[data-offer]').forEach(el => {
-      if (el.id !== 'hero-cta') el.href = bookingUrl; // hero-cta ведёт к прайс-листу на странице
+      el.href = bookingUrl;
       el.addEventListener('click', () => trackBookingClick(el.dataset.offer, el.dataset.location));
     });
 
-    // ---------- Прайс-лист ----------
-    const priceListEl = document.getElementById('price-list');
-    const renderGroup = (group) => `
-      <div class="price-group">
-        <div class="price-group-title">${group.title}</div>
-        ${group.items.map(item => `
-          <div class="price-row">
-            <span class="price-row-label">${item.label}</span>
-            <span class="price-row-value">
-              <span class="price-row-price">${item.price}</span>
-              <a class="price-row-cta" href="${bookingUrl}" target="_blank" rel="noopener" data-offer="${item.offerId}" data-location="price_list">Записаться</a>
-            </span>
-          </div>
-        `).join('')}
+    // ---------- "Связаться" в hero — ведёт в Telegram ----------
+    document.getElementById('hero-contact').href = d.contacts.telegramHref;
+
+    // ---------- Офферы ----------
+    const offersGrid = document.getElementById('offers-grid');
+    offersGrid.innerHTML = d.offers.map(o => `
+      <div class="offer-card">
+        <span class="offer-tag">${o.tag}</span>
+        <div class="offer-title">${o.title}</div>
+        <div class="offer-price">${o.price}</div>
+        <div class="offer-gift"><span class="offer-gift-icon">🎁</span><span>${o.gift}</span></div>
+        <a class="btn btn-pink" href="${bookingUrl}" target="_blank" rel="noopener" data-offer="${o.offerId}" data-location="offers">Записаться</a>
       </div>
-    `;
-    priceListEl.innerHTML = renderGroup(d.priceList.laser) + renderGroup(d.priceList.sugaring);
-    priceListEl.querySelectorAll('a[data-offer]').forEach(el => {
+    `).join('');
+    offersGrid.querySelectorAll('a[data-offer]').forEach(el => {
       el.addEventListener('click', () => trackBookingClick(el.dataset.offer, el.dataset.location));
     });
-    document.getElementById('price-note').textContent = d.priceList.note;
 
-    // ---------- Как это работает ----------
-    document.getElementById('steps-list').innerHTML = d.steps.map((s, i) => `
-      <div class="step-row">
-        <div class="step-number">0${i + 1}</div>
-        <div>
-          <div class="step-title">${s.title}</div>
-          <div class="step-text">${s.text}</div>
-        </div>
+    // ---------- Преимущества ----------
+    const icons = { leaf: '🌿', shield: '🛡', sparkle: '✨', heart: '♡' };
+    document.getElementById('advantages-grid').innerHTML = d.advantages.map(a => `
+      <div>
+        <div class="advantage-icon">${icons[a.icon] || '•'}</div>
+        <div class="advantage-title">${a.title}</div>
+        <div class="advantage-text">${a.text}</div>
       </div>
     `).join('');
 
-    // ---------- О студии ----------
-    document.getElementById('studio-text').textContent = d.studio.text;
-    const statsEl = document.getElementById('studio-stats');
-    let statsHtml = '';
-    if (d.studio.yearsExperience) {
-      statsHtml += `<div class="stat-item"><div class="stat-value">${d.studio.yearsExperience}</div><div class="stat-label">опыта</div></div>`;
-    }
-    if (d.trust.rating) {
-      statsHtml += `<div class="stat-item"><div class="stat-value">${d.trust.rating}</div><div class="stat-label">на Яндекс Картах</div></div>`;
-    }
-    if (d.studio.minutesFromMetro) {
-      statsHtml += `<div class="stat-item"><div class="stat-value">${d.studio.minutesFromMetro}</div><div class="stat-label">от метро</div></div>`;
-    }
-    statsEl.innerHTML = statsHtml;
-
-    // ---------- Отзывы (editorial quotes) ----------
-    const reviewsEl = document.getElementById('reviews-list');
-    if (d.trust.reviews && d.trust.reviews.length) {
-      reviewsEl.innerHTML = d.trust.reviews.map(r => `
-        <div class="review-quote">
-          <div class="review-quote-text">«${r.text}»</div>
-          <div class="review-quote-meta">
-            <span class="review-stars">★★★★★</span>
-            <span>${r.author}${d.trust.reviewsCount ? ' · Яндекс Карты' : ''}</span>
-          </div>
-        </div>
-      `).join('');
-    } else {
-      reviewsEl.innerHTML = `<p class="studio-text">TODO: добавить реальные отзывы гостей.</p>`;
-    }
-
     // ---------- Локация ----------
+    document.getElementById('loc-metro').textContent = d.contacts.metro;
+    document.getElementById('loc-metro-walk').textContent = d.contacts.metroWalk;
     document.getElementById('loc-address').textContent = d.contacts.address;
-    document.getElementById('loc-metro').textContent = d.contacts.addressShort;
     document.getElementById('loc-hours').textContent = d.contacts.hours;
     document.getElementById('loc-route').href = d.contacts.mapUrl;
+    document.getElementById('map-iframe').src = d.contacts.mapEmbedUrl;
 
-    // ---------- Финальные контакты ----------
-    const phoneLink = document.getElementById('link-phone');
-    phoneLink.textContent = d.contacts.phone;
-    phoneLink.href = d.contacts.phoneHref;
+    document.getElementById('top-metro').textContent = d.contacts.metro;
+    document.getElementById('top-metro-walk').textContent = d.contacts.metroWalk;
+    document.getElementById('top-phone').textContent = d.contacts.phone;
+
+    // ---------- Отзывы ----------
+    document.getElementById('reviews-grid').innerHTML = d.trust.reviews.map(r => `
+      <div class="review-card">
+        <div class="review-quote-icon">“</div>
+        <div class="review-text">${r.text}</div>
+        <div class="review-stars">★★★★★</div>
+        <div class="review-author">${r.author}</div>
+      </div>
+    `).join('');
+
+    // ---------- Футер ----------
+    document.getElementById('link-max').href = d.contacts.maxHref;
     document.getElementById('link-tg').href = d.contacts.telegramHref;
     document.getElementById('link-wa').href = d.contacts.whatsappHref;
-    document.getElementById('link-max').href = d.contacts.maxHref;
-
-    // ---------- Год в футере ----------
+    document.getElementById('link-call').href = d.contacts.phoneHref;
     document.getElementById('year').textContent = new Date().getFullYear();
 
     // ---------- Sticky CTA: появляется после начала скролла ----------
     const stickyNav = document.getElementById('sticky-nav');
     let ticking = false;
     function updateStickyVisibility() {
-      stickyNav.classList.toggle('visible', window.scrollY > window.innerHeight * 0.6);
+      stickyNav.classList.toggle('visible', window.scrollY > window.innerHeight * 0.5);
       ticking = false;
     }
     window.addEventListener('scroll', () => {
