@@ -15,7 +15,7 @@ const SITE_DATA = {
     phoneHref: "tel:+79890439494",
     telegramHref: "https://t.me/daryasugarya",
     whatsappHref: "https://wa.me/79890439494",
-    maxHref: "https://max.ru/79890439494", // TODO: подтвердить актуальную ссылку Max
+    maxHref: "https://max.ru/u/f9LHodD0cOIMVOPuiWhFmY8fbjGgw4EKXUVkiR2PDGarl4Rvp3xYqM1D7Ms", // TODO: подтвердить актуальную ссылку Max
     address: "ул. Таганская, 1/2с2, Москва",
     metro: "м. Таганская",
     metroWalk: "2 минуты пешком",
