@@ -2,17 +2,30 @@
 // ДАРЬЯ ШУГАРЬЯ × ПАРТНЁР — рендер контента, партнёр, трекинг
 // ==========================================================
 
+// ---------- Короткие ссылки для партнёров ----------
+// Ключ — то, что идёт после слэша: daryasugarya.su/leravern
+// Лежит прямо здесь, в app.js, а не в data.js — чтобы всё нужное
+// для работы коротких ссылок было в ОДНОМ файле.
+// Чтобы добавить партнёра: допишите новую строку по образцу.
+var PARTNER_SLUGS = {
+  "leravern": { partner_id: "leravern", partner_name: "Валерии Верн" }
+};
+
 (function () {
 
   // ---------- Безопасное получение параметров партнёра из URL ----------
   // Значения вставляются только через textContent — HTML/JS-инъекции невозможны.
   // Сначала проверяем короткий путь (daryasugarya.su/leravern) по таблице
-  // SITE_DATA.partnerSlugs — так сайт сам узнаёт партнёра, без Cloudflare-редиректа.
+  // PARTNER_SLUGS выше — так сайт сам узнаёт партнёра, без Cloudflare-редиректа.
   // Если пути нет в таблице — используем query-параметры (?partner_id=...&partner_name=...).
   function getPartnerInfo() {
     const slug = window.location.pathname.replace(/^\/+|\/+$/g, '').toLowerCase();
     const clean = (s) => (s || '').toString().slice(0, 80).replace(/[<>]/g, '').trim();
 
+    if (slug && PARTNER_SLUGS[slug]) {
+      const p = PARTNER_SLUGS[slug];
+      return { partnerId: clean(p.partner_id), partnerName: clean(p.partner_name) };
+    }
     if (slug && SITE_DATA.partnerSlugs && SITE_DATA.partnerSlugs[slug]) {
       const p = SITE_DATA.partnerSlugs[slug];
       return { partnerId: clean(p.partner_id), partnerName: clean(p.partner_name) };
