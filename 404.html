@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover">
+<title>Дарья Шугарья — особые условия для клиентов партнёра</title>
+<meta name="description" content="Лазерная эпиляция, шугаринг и воск на особых условиях для новых гостей студии «Дарья Шугарья» на Таганской.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- ================= HERO ================= -->
+<header class="hero">
+  <div class="hero-photo-bg">
+    <img src="image/hero-laser.jpg" alt="Лазерная эпиляция в студии Дарья Шугарья">
+  </div>
+
+  <div class="hero-top wrap">
+    <div class="logo">СТУДИЯ<br><strong>ДАРЬЯ<br>ШУГАРЬЯ</strong></div>
+    <div class="partner-pill" id="partner-pill">Специальное предложение</div>
+    <div class="hero-top-contacts">
+      <div class="hero-top-item">
+        <span class="hero-top-icon">📍</span>
+        <span><span id="top-metro"></span><br><span id="top-metro-walk" class="muted"></span></span>
+      </div>
+      <div class="hero-top-item">
+        <span class="hero-top-icon">📞</span>
+        <span><span id="top-phone"></span><br><span class="muted">WhatsApp</span></span>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-inner wrap">
+    <h1>Особые условия<br>для клиентов<br><span class="accent" id="hero-partner-name">нашего партнёра</span></h1>
+    <p class="hero-subtitle">Лазерная эпиляция, шугаринг и воск на особых условиях для новых гостей студии</p>
+
+    <div class="hero-buttons">
+      <a class="btn btn-pink" id="hero-book" href="#offers" data-offer="general" data-location="hero">Записаться</a>
+      <a class="btn btn-outline-light" id="hero-contact" href="#" target="_blank" rel="noopener">Связаться</a>
+    </div>
+  </div>
+
+  <div class="hero-wave"></div>
+</header>
+
+<!-- ================= СПЕЦПРЕДЛОЖЕНИЯ ================= -->
+<section class="section offers-section" id="offers">
+  <div class="wrap">
+    <span class="eyebrow">Специальное предложение</span>
+    <h2>Для новых гостей студии</h2>
+    <div class="exclusive-pill" id="exclusive-pill">Эксклюзивно для наших партнёров</div>
+
+    <div class="offers-grid" id="offers-grid"><!-- рендерится из data.js --></div>
+
+    <p class="offers-note" id="offers-note"></p>
+  </div>
+</section>
+
+<!-- ================= КОМФОРТ / ДОВЕРИЕ ================= -->
+<section class="section comfort-section">
+  <div class="wrap comfort-wrap">
+    <div class="comfort-text">
+      <h2>Комфорт, безопасность<br>и деликатный подход</h2>
+      <div class="comfort-divider"></div>
+      <div class="advantages-grid" id="advantages-grid"><!-- рендерится из data.js --></div>
+    </div>
+    <div class="comfort-photo">
+      <img src="image/comfort-hands.jpg" alt="Уход после процедуры в студии Дарья Шугарья" loading="lazy">
+    </div>
+  </div>
+</section>
+
+<!-- ================= ЛОКАЦИЯ ================= -->
+<section class="section location-section">
+  <div class="wrap location-wrap">
+    <div class="location-text">
+      <span class="eyebrow">Наше местоположение</span>
+      <h2>Удобно добраться</h2>
+
+      <div class="location-row">
+        <span class="location-icon">📍</span>
+        <span><span id="loc-metro"></span><br><span class="muted" id="loc-metro-walk"></span></span>
+      </div>
+      <div class="location-row">
+        <span class="location-icon">🏢</span>
+        <span id="loc-address"></span>
+      </div>
+      <div class="location-row">
+        <span class="location-icon">🕐</span>
+        <span id="loc-hours"></span>
+      </div>
+
+      <a class="btn btn-dark" id="loc-route" href="#" target="_blank" rel="noopener">Построить маршрут</a>
+    </div>
+
+    <div class="location-map">
+      <iframe id="map-iframe" src="" width="100%" height="100%" frameborder="0" loading="lazy" title="Карта — Дарья Шугарья"></iframe>
+    </div>
+  </div>
+</section>
+
+<!-- ================= ОТЗЫВЫ ================= -->
+<section class="section reviews-section">
+  <div class="wrap">
+    <span class="eyebrow">Нам доверяют</span>
+    <h2>Отзывы наших гостей</h2>
+
+    <div class="reviews-grid" id="reviews-grid"><!-- рендерится из data.js --></div>
+  </div>
+</section>
+
+<!-- ================= FOOTER CTA ================= -->
+<footer class="footer-cta">
+  <div class="wrap">
+    <h2>Остались вопросы?</h2>
+    <p>Мы с радостью ответим</p>
+
+    <div class="footer-links">
+      <a href="#" id="link-max" target="_blank" rel="noopener" class="pill-link">Max</a>
+      <a href="#" id="link-tg" target="_blank" rel="noopener" class="pill-link">Telegram</a>
+      <a href="#" id="link-wa" target="_blank" rel="noopener" class="pill-link">WhatsApp</a>
+      <a href="#" id="link-call" class="pill-link">Позвонить</a>
+    </div>
+
+    <a class="btn btn-pink btn-large" id="footer-book" href="#" target="_blank" rel="noopener" data-offer="general" data-location="footer">Записаться</a>
+
+    <div class="footer-copyright">© <span id="year"></span> Дарья Шугарья</div>
+  </div>
+</footer>
+
+<!-- Sticky-кнопка на мобильном, появляется при скролле -->
+<nav class="sticky-nav" id="sticky-nav">
+  <a id="sticky-cta" href="#" target="_blank" rel="noopener" data-offer="general" data-location="sticky_nav">Записаться</a>
+</nav>
+
+<script src="data.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
