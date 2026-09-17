@@ -6,11 +6,21 @@
 
   // ---------- Безопасное получение параметров партнёра из URL ----------
   // Значения вставляются только через textContent — HTML/JS-инъекции невозможны.
+  // Сначала проверяем короткий путь (daryasugarya.su/leravern) по таблице
+  // SITE_DATA.partnerSlugs — так сайт сам узнаёт партнёра, без Cloudflare-редиректа.
+  // Если пути нет в таблице — используем query-параметры (?partner_id=...&partner_name=...).
   function getPartnerInfo() {
+    const slug = window.location.pathname.replace(/^\/+|\/+$/g, '').toLowerCase();
+    const clean = (s) => (s || '').toString().slice(0, 80).replace(/[<>]/g, '').trim();
+
+    if (slug && SITE_DATA.partnerSlugs && SITE_DATA.partnerSlugs[slug]) {
+      const p = SITE_DATA.partnerSlugs[slug];
+      return { partnerId: clean(p.partner_id), partnerName: clean(p.partner_name) };
+    }
+
     const params = new URLSearchParams(window.location.search);
     let partnerId = params.get('partner_id') || params.get('partner') || '';
     let partnerName = params.get('partner_name') || params.get('partner') || '';
-    const clean = (s) => (s || '').toString().slice(0, 80).replace(/[<>]/g, '').trim();
     return { partnerId: clean(partnerId), partnerName: clean(partnerName) };
   }
 

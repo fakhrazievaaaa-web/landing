@@ -6,6 +6,14 @@
 
 const SITE_DATA = {
 
+  // ---------- Короткие ссылки для партнёров ----------
+  // Ключ — то, что идёт после слэша в адресе: daryasugarya.su/leravern
+  // Здесь редирект через Cloudflare не нужен — сайт сам узнаёт партнёра по пути.
+  // Чтобы добавить нового партнёра: допишите новую строку сюда.
+  partnerSlugs: {
+    "leravern": { partner_id: "leravern", partner_name: "Валерии Верн" }
+  },
+
   booking: {
     yclientsUrl: "https://n2253459.yclients.com"
   },
@@ -15,7 +23,7 @@ const SITE_DATA = {
     phoneHref: "tel:+79890439494",
     telegramHref: "https://t.me/daryasugarya",
     whatsappHref: "https://wa.me/79890439494",
-    maxHref: "https://max.ru/u/f9LHodD0cOIMVOPuiWhFmY8fbjGgw4EKXUVkiR2PDGarl4Rvp3xYqM1D7Ms", // TODO: подтвердить актуальную ссылку Max
+    maxHref: "https://max.ru/u/f9LHodD0cOIMVOPuiWhFmY8fbjGgw4EKXUVkiR2PDGarl4Rvp3xYqM1D7Ms",
     address: "ул. Таганская, 1/2с2, Москва",
     metro: "м. Таганская",
     metroWalk: "2 минуты пешком",
