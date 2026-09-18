@@ -8,7 +8,8 @@
 // для работы коротких ссылок было в ОДНОМ файле.
 // Чтобы добавить партнёра: допишите новую строку по образцу.
 var PARTNER_SLUGS = {
-  "leravern": { partner_id: "leravern", partner_name: "Валерии Верн" }
+  "leravern": { partner_id: "leravern", partner_name: "Валерии Верн" },
+  "lustudio": { partner_id: "lustudio", partner_name: "Lu Studio" }
 };
 
 (function () {
